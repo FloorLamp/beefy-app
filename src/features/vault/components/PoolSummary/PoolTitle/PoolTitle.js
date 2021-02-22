@@ -9,16 +9,19 @@ import styles from './styles';
 
 const useStyles = makeStyles(styles);
 
-const PoolTitle = ({ name, logo, description, url }) => {
+const PoolTitle = ({ name, logo, description, url, columns = 3 }) => {
   const classes = useStyles();
 
   return (
-    <Grid item xs={3} className={classes.container}>
-      <Avatar alt={name} variant='square'
-              imgProps={{ style: { objectFit: 'contain' } }}
-              src={require(`../../../../../images/${logo}`)} />
+    <Grid item xs={columns} className={classes.container}>
+      <Avatar
+        alt={name}
+        variant="square"
+        imgProps={{ style: { objectFit: 'contain' } }}
+        src={require(`../../../../../images/${logo}`)}
+      />
       <div className={classes.texts}>
-        <Typography className={classes.title} variant='body2' gutterBottom>
+        <Typography className={classes.title} variant="body2" gutterBottom>
           {name}
           <Hidden smUp>
             <i
@@ -33,7 +36,7 @@ const PoolTitle = ({ name, logo, description, url }) => {
             />
           </Hidden>
         </Typography>
-        <Typography className={classes.subtitle} variant='body2'>
+        <Typography className={classes.subtitle} variant="body2">
           {description}
         </Typography>
       </div>

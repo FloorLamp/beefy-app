@@ -1,6 +1,6 @@
-import { HomePage } from './';
+import vaultRoute from 'features/vault/route';
 
 export default {
   path: '',
-  childRoutes: [{ path: 'index', component: HomePage, isIndex: true }],
+  childRoutes: [vaultRoute],
 };

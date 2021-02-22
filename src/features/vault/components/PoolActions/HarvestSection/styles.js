@@ -1,9 +1,6 @@
 import { primaryColor } from 'assets/jss/material-kit-pro-react.js';
 
 const styles = theme => ({
-  sliderDetailContainer: {
-    padding: '24px 30px',
-  },
   showDetailLeft: {
     float: 'left',
     marginBottom: '10px',
@@ -28,7 +25,7 @@ const styles = theme => ({
     },
     [theme.breakpoints.up('lg')]: {
       maxWidth: '100px',
-    }
+    },
   },
   showDetailButton: {
     margin: '12px 5px',

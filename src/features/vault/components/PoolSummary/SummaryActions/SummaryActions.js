@@ -8,7 +8,7 @@ import styles from './styles';
 
 const useStyles = makeStyles(styles);
 
-const SummaryActions = ({ helpUrl, toggleCard, isOpen }) => {
+const SummaryActions = ({ helpUrl, onClick }) => {
   const classes = useStyles();
 
   return (
@@ -24,29 +24,14 @@ const SummaryActions = ({ helpUrl, toggleCard, isOpen }) => {
                 visibility: Boolean(helpUrl) ? 'visible' : 'hidden',
               }}
               onClick={event => {
-                event.stopPropagation();
-                window.open(helpUrl);
+                // event.stopPropagation();
+                // window.open(helpUrl);
               }}
             >
               <i className={'far fa-question-circle'} />
             </IconButton>
           </Grid>
         </Hidden>
-        <Grid item>
-          <IconButton
-            className={classes.iconContainerPrimary}
-            onClick={event => {
-              event.stopPropagation();
-              toggleCard();
-            }}
-          >
-            {isOpen ? (
-              <i className={'far fa-arrow-alt-circle-up'} />
-            ) : (
-              <i className={'far fa-arrow-alt-circle-down'} />
-            )}
-          </IconButton>
-        </Grid>
       </Grid>
     </Grid>
   );

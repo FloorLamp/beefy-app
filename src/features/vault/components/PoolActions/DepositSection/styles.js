@@ -2,7 +2,7 @@ import { primaryColor } from 'assets/jss/material-kit-pro-react.js';
 
 const styles = theme => ({
   sliderDetailContainer: {
-    padding: '24px 30px',
+    padding: '24px 12px',
   },
   showDetailLeft: {
     float: 'left',

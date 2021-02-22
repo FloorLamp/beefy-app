@@ -1,6 +1,10 @@
 import { VaultPage } from './';
+import VaultDetailsPage from './VaultDetailsPage';
 
 export default {
-  path: 'vault',
-  childRoutes: [{ path: 'vault', component: VaultPage, isIndex: true }],
+  path: '',
+  childRoutes: [
+    { path: '', component: VaultPage, isIndex: true },
+    { path: 'vault/:vaultId', component: VaultDetailsPage },
+  ],
 };
