@@ -27,6 +27,7 @@ const initialState = {
   fetchDepositPending: {},
   fetchWithdrawPending: {},
   fetchHarvestPending: {},
+  visiblePoolPages: 1,
 };
 
 export default initialState;

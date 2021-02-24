@@ -1,8 +1,8 @@
 import React from 'react';
 
+import InfiniteScroll from 'react-infinite-scroll-component';
 import { useTranslation } from 'react-i18next';
 import { makeStyles } from '@material-ui/core/styles';
-import { FixedSizeList } from 'react-window';
 import styles from './styles';
 
 import useFilteredPools from '../../hooks/useFilteredPools';
@@ -10,14 +10,12 @@ import usePoolsByPlatform from '../../hooks/usePoolsByPlatform';
 import usePoolsByVaultType from '../../hooks/usePoolsByVaultType';
 import usePoolsByAsset from '../../hooks/usePoolsByAsset';
 import useSortedPools from '../../hooks/useSortedPools';
+import { useShowNextPage } from '../../redux/hooks';
 
 import PoolSummary from '../PoolSummary/PoolSummary';
 import Filters from '../Filters/Filters';
 
 const useStyles = makeStyles(styles);
-
-// TODO: Measure this dynamically?
-const rowHeight = 122;
 
 const VisiblePools = ({
   pools,
@@ -35,6 +33,7 @@ const VisiblePools = ({
   const { poolsByVaultType, vaultType, setVaultType } = usePoolsByVaultType(poolsByPlatform);
   const { poolsByAsset, asset, setAsset } = usePoolsByAsset(poolsByVaultType);
   const { sortedPools, order, setOrder } = useSortedPools(poolsByAsset, apys);
+  const { showNextPage, pools: visiblePools } = useShowNextPage(sortedPools);
 
   return (
     <>
@@ -50,19 +49,15 @@ const VisiblePools = ({
         setAsset={setAsset}
         setOrder={setOrder}
       />
-      <FixedSizeList
-        itemSize={rowHeight}
-        itemCount={sortedPools.length}
-        height={rowHeight * 10}
-        width="100%"
-        itemData={sortedPools}
-        onItemsRendered={data => console.log(data)}
-      >
-        {({ data, index, style }) => {
-          const pool = data[index];
-          return (
+      <div className={classes.scroller}>
+        <InfiniteScroll
+          className={classes.scrollerInner}
+          dataLength={visiblePools.length}
+          hasMore={true}
+          next={showNextPage}
+        >
+          {visiblePools.map((pool, index) => (
             <PoolSummary
-              style={style}
               pool={pool}
               index={index}
               tokens={tokens}
@@ -72,9 +67,9 @@ const VisiblePools = ({
               fetchApysDone={fetchApysDone}
               fetchVaultsDataDone={fetchVaultsDataDone}
             />
-          );
-        }}
-      </FixedSizeList>
+          ))}
+        </InfiniteScroll>
+      </div>
       {!sortedPools.length && <h3 className={classes.subtitle}>{t('No-Results')}</h3>}
     </>
   );

@@ -1,7 +1,4 @@
 const styles = theme => ({
-  container: {
-    padding: '24px',
-  },
   summary: {
     position: 'relative',
     display: 'flex',
@@ -9,6 +6,7 @@ const styles = theme => ({
     border: '1px solid ' + theme.palette.background.border,
     paddingTop: '24px',
     paddingBottom: '24px',
+    margin: '24px 0',
     background: pool =>
       pool.status === 'eol'
         ? theme.palette.background.retired

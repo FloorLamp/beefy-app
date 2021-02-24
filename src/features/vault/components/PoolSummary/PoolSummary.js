@@ -18,7 +18,6 @@ import SummaryActions from './SummaryActions/SummaryActions';
 const useStyles = makeStyles(styles);
 
 const PoolSummary = ({
-  style,
   pool,
   tokens,
   apy,
@@ -43,81 +42,32 @@ const PoolSummary = ({
   };
 
   return (
-    <div style={style} className={classes.container}>
-      <Grid
-        className={classes.summary}
-        container
-        justify="space-around"
-        spacing={0}
-        onClick={event => {
-          // Do we need to connect to redux store here?
-          push(`/vault/${pool.id}`);
-        }}
-      >
-        {vaultStateTitle(pool.status, pool.depositsPaused)}
-        <PoolTitle
-          name={pool.name}
-          logo={pool.logo}
-          description={pool.tokenDescription}
-          url={pool.tokenDescriptionUrl}
-        />
-        <Grid item md={7} xs={4}>
-          <Grid item container justify="space-between">
-            <Hidden smDown>
-              <LabeledStat
-                value={formatDecimals(balanceSingle)}
-                label={t('Vault-Balance')}
-                isLoading={!fetchBalancesDone}
-                xs={5}
-                md={3}
-              />
-              <LabeledStat
-                value={formatDecimals(
-                  byDecimals(
-                    sharesBalance.multipliedBy(new BigNumber(pool.pricePerFullShare)),
-                    pool.tokenDecimals
-                  )
-                )}
-                label={t('Vault-Deposited')}
-                isLoading={!fetchBalancesDone}
-                xs={5}
-                md={3}
-                align="start"
-              />
-              <LabeledStat
-                value={formatApy(apy)}
-                label={t('Vault-APY')}
-                isLoading={!fetchApysDone}
-                xs={5}
-                md={2}
-                align="start"
-              />
-              <LabeledStat
-                value={calcDaily(apy)}
-                label={t('Vault-APYDaily')}
-                isLoading={!fetchApysDone}
-                xs={5}
-                md={2}
-              />
-              <LabeledStat
-                value={formatTvl(pool.tvl, pool.oraclePrice)}
-                label={t('Vault-TVL')}
-                isLoading={!fetchVaultsDataDone}
-                xs={5}
-                md={2}
-              />
-            </Hidden>
-          </Grid>
-        </Grid>
-        <SummaryActions />
-
-        <Hidden mdUp>
-          <Grid item xs={12} style={{ display: 'flex' }}>
+    <Grid
+      className={classes.summary}
+      container
+      justify="space-around"
+      spacing={0}
+      onClick={event => {
+        // Do we need to connect to redux store here?
+        push(`/vault/${pool.id}`);
+      }}
+    >
+      {vaultStateTitle(pool.status, pool.depositsPaused)}
+      <PoolTitle
+        name={pool.name}
+        logo={pool.logo}
+        description={pool.tokenDescription}
+        url={pool.tokenDescriptionUrl}
+      />
+      <Grid item md={7} xs={4}>
+        <Grid item container justify="space-between">
+          <Hidden smDown>
             <LabeledStat
               value={formatDecimals(balanceSingle)}
               label={t('Vault-Balance')}
               isLoading={!fetchBalancesDone}
-              xs={6}
+              xs={5}
+              md={3}
             />
             <LabeledStat
               value={formatDecimals(
@@ -127,34 +77,81 @@ const PoolSummary = ({
                 )
               )}
               label={t('Vault-Deposited')}
-              xs={6}
+              isLoading={!fetchBalancesDone}
+              xs={5}
+              md={3}
               align="start"
             />
-          </Grid>
-          <Grid item xs={12} style={{ display: 'flex' }}>
             <LabeledStat
               value={formatApy(apy)}
               label={t('Vault-APY')}
               isLoading={!fetchApysDone}
-              xs={4}
+              xs={5}
+              md={2}
               align="start"
             />
             <LabeledStat
               value={calcDaily(apy)}
               label={t('Vault-APYDaily')}
               isLoading={!fetchApysDone}
-              xs={4}
+              xs={5}
+              md={2}
             />
             <LabeledStat
               value={formatTvl(pool.tvl, pool.oraclePrice)}
               label={t('Vault-TVL')}
               isLoading={!fetchVaultsDataDone}
-              xs={4}
+              xs={5}
+              md={2}
             />
-          </Grid>
-        </Hidden>
+          </Hidden>
+        </Grid>
       </Grid>
-    </div>
+      <SummaryActions />
+
+      <Hidden mdUp>
+        <Grid item xs={12} style={{ display: 'flex' }}>
+          <LabeledStat
+            value={formatDecimals(balanceSingle)}
+            label={t('Vault-Balance')}
+            isLoading={!fetchBalancesDone}
+            xs={6}
+          />
+          <LabeledStat
+            value={formatDecimals(
+              byDecimals(
+                sharesBalance.multipliedBy(new BigNumber(pool.pricePerFullShare)),
+                pool.tokenDecimals
+              )
+            )}
+            label={t('Vault-Deposited')}
+            xs={6}
+            align="start"
+          />
+        </Grid>
+        <Grid item xs={12} style={{ display: 'flex' }}>
+          <LabeledStat
+            value={formatApy(apy)}
+            label={t('Vault-APY')}
+            isLoading={!fetchApysDone}
+            xs={4}
+            align="start"
+          />
+          <LabeledStat
+            value={calcDaily(apy)}
+            label={t('Vault-APYDaily')}
+            isLoading={!fetchApysDone}
+            xs={4}
+          />
+          <LabeledStat
+            value={formatTvl(pool.tvl, pool.oraclePrice)}
+            label={t('Vault-TVL')}
+            isLoading={!fetchVaultsDataDone}
+            xs={4}
+          />
+        </Grid>
+      </Hidden>
+    </Grid>
   );
 };
 
