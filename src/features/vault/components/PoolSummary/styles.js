@@ -19,6 +19,11 @@ const styles = theme => ({
       transform: 'scale3d(1.03, 1.03, 1)',
     },
   },
+  gridMobile: {
+    '&:not(:last-child)': {
+      margin: '12px 0',
+    },
+  },
 });
 
 export default styles;

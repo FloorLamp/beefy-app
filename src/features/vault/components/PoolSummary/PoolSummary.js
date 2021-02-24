@@ -110,7 +110,7 @@ const PoolSummary = ({
       <SummaryActions />
 
       <Hidden mdUp>
-        <Grid item xs={12} style={{ display: 'flex' }}>
+        <Grid item className={classes.gridMobile} xs={12} style={{ display: 'flex' }}>
           <LabeledStat
             value={formatDecimals(balanceSingle)}
             label={t('Vault-Balance')}
@@ -129,7 +129,7 @@ const PoolSummary = ({
             align="start"
           />
         </Grid>
-        <Grid item xs={12} style={{ display: 'flex' }}>
+        <Grid item className={classes.gridMobile} xs={12} style={{ display: 'flex' }}>
           <LabeledStat
             value={formatApy(apy)}
             label={t('Vault-APY')}
