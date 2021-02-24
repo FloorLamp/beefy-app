@@ -1,7 +1,5 @@
 import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import Divider from '@material-ui/core/Divider';
-import IconButton from '@material-ui/core/IconButton';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Hidden from '@material-ui/core/Hidden';
@@ -12,7 +10,7 @@ import BigNumber from 'bignumber.js';
 import { useConnectWallet } from '../../../home/redux/hooks';
 import { useFetchBalances, useFetchVaultsData, useFetchApys } from '../../redux/hooks';
 import { byDecimals } from 'features/helpers/bignumber';
-import { formatApy, formatTvl, calcDaily, formatDecimals } from 'features/helpers/format';
+import { formatApy, formatTvl, calcDaily } from 'features/helpers/format';
 import HomeLink from './HomeLink/HomeLink';
 import PoolActions from '../PoolActions/PoolActions';
 import PoolTitle from '../PoolSummary/PoolTitle/PoolTitle';

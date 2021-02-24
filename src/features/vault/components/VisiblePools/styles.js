@@ -1,6 +1,7 @@
 const styles = theme => ({
-  scroller: {
+  list: {
     width: '100%',
+    padding: '24px',
   },
   subtitle: {
     fontSize: '20px',

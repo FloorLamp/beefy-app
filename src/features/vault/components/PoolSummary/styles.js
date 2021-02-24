@@ -1,8 +1,11 @@
 const styles = theme => ({
   container: {
+    padding: '24px',
+  },
+  summary: {
+    position: 'relative',
     display: 'flex',
     alignItems: 'center',
-    marginBottom: '24px',
     border: '1px solid ' + theme.palette.background.border,
     paddingTop: '24px',
     paddingBottom: '24px',
@@ -13,6 +16,10 @@ const styles = theme => ({
         ? theme.palette.background.paused
         : theme.palette.background.primary,
     cursor: 'pointer',
+    transition: 'transform 0.15s ease-in-out',
+    '&:hover': {
+      transform: 'scale3d(1.03, 1.03, 1)',
+    },
   },
 });
 

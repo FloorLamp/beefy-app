@@ -8,7 +8,7 @@ import styles from './styles';
 
 const useStyles = makeStyles(styles);
 
-const SummaryActions = ({ helpUrl, onClick }) => {
+const SummaryActions = () => {
   const classes = useStyles();
 
   return (
@@ -18,17 +18,10 @@ const SummaryActions = ({ helpUrl, onClick }) => {
           <Grid item>
             <IconButton
               classes={{
-                root: classes.iconContainerSecond,
-              }}
-              style={{
-                visibility: Boolean(helpUrl) ? 'visible' : 'hidden',
-              }}
-              onClick={event => {
-                // event.stopPropagation();
-                // window.open(helpUrl);
+                root: classes.icon,
               }}
             >
-              <i className={'far fa-question-circle'} />
+              <i className={'fas fa-arrow-right'} />
             </IconButton>
           </Grid>
         </Hidden>

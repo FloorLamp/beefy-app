@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React from 'react';
 import Hidden from '@material-ui/core/Hidden';
 import Grid from '@material-ui/core/Grid';
 import { useTranslation } from 'react-i18next';
@@ -43,9 +43,9 @@ const PoolSummary = ({
   };
 
   return (
-    <div style={style}>
+    <div style={style} className={classes.container}>
       <Grid
-        className={classes.container}
+        className={classes.summary}
         container
         justify="space-around"
         spacing={0}
@@ -109,7 +109,7 @@ const PoolSummary = ({
             </Hidden>
           </Grid>
         </Grid>
-        <SummaryActions helpUrl={pool.tokenDescriptionUrl} />
+        <SummaryActions />
 
         <Hidden mdUp>
           <Grid item xs={12} style={{ display: 'flex' }}>
